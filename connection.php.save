@@ -1,0 +1,93 @@
+<?php
+
+
+$con = mysql_connect("localhost","root", "admin") or print (mysql_error());
+mysql_select_db("db_Cotidiano",$con);
+$sql = "SELECT Resultante_Angular FROM tabela"; 
+$result = mysql_query($sql, $con); 
+
+
+
+Funções do PHP
+
+    Existem funções no PHP específicas para conexão ao servidor e ao banco.
+
+mysql_connect(); função para conexão ao servidor 
+mysql_select_db(); função para selecionar o banco de dados
+
+
+Testando a conexão
+
+<?php 
+$conecta = mysql_connect("HOST", "LOGIN", "SENHA") or print (mysql_error()); 
+print "Conexão OK!"; 
+mysql_close($conecta); 
+?>
+
+Observação!
+
+Host=mysqlxx.seudominio.com.br, caso o DNS de seu site não estiver hospedado na Locaweb, pode utilizar o IP do servidor até que você aponte o dns para nossa rede. Para localizar o ip do servidor Mysql siga as instruções do wiki ao lado Informações Clique aqui!
+
+
+Testando a seleção
+
+<?php 
+$conecta = mysql_connect("HOST", "LOGIN", "SENHA") or print (mysql_error()); 
+mysql_select_db("BANCO", $conecta) or print(mysql_error()); 
+print "Conexão e Seleção OK!"; 
+mysql_close($conecta); 
+?>
+
+
+Trabalhando com os Dados Presentes no Banco
+
+mysql_query(); executa um comando SQL no banco de dados. 
+mysql_fetch_array(); retorna linha de consulta até que a condição seja falsa. 
+mysql_free_result(); libera memória utilizada. 
+mysql_close(); fecha conexão com o servidor.
+
+
+Usaremos uma função de loop ( while(); ) para demonstrar uma consulta SQL em ação.
+
+
+Obs: é possível utilizar o script abaixo para interação com tabela e colunas criadas em nosso exemplo de MySQL.
+
+ <?php 
+$conecta = mysql_connect("HOST", "LOGIN", "SENHA") or print (mysql_error()); 
+mysql_select_db("BANCO", $conecta) or print(mysql_error()); 
+$sql = "SELECT coluna1, coluna2 FROM tabela"; 
+$result = mysql_query($sql, $conecta); 
+ 
+/* Escreve resultados até que não haja mais linhas na tabela */ 
+ 
+while($consulta = mysql_fetch_array($result)) { 
+   print "Coluna1: $consulta[coluna1] - Coluna2: $consulta[coluna2]<br>"; 
+} 
+mysql_free_result($result); 
+mysql_close($conecta); 
+?>
+
+
+Recursos sobre PHP + MYSQL na Internet
+
+Existe muitas informações sobre conexão PHP + MySQL na Internet; segue abaixo alguns sites interessantes.
+
+http://www.phpbrasil.com
+http://www.truquesedicas.com/tutoriais/php
+
+
+Veja também
+
+    Ativando uma base MySQL inclusa no plano
+    Informações de acesso ao banco MySQL
+    Definir ou alterar a senha do MySQL
+    Como restaurar um arquivo .SQLno banco MySQL via phpMyAdmin
+    Por que consigo executar uma determinada query no MySQL 4, mas não consigo executá-la no MySQL 5?
+
+
+Central do Cliente
+Painel de Controle
+Central de Atendimento
+
+
+?>
