@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+Template Name: Gallerised
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Personal Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="../layout/styles/layout.css" type="text/css" />
+</head>
+<body id="top">
+<div class="wrapper col1">
+  <div id="header">
+    <div id="topnav">
+      <ul>
+        <li class="active"><a href="style-demo.html">Personal Page</a></li>
+        <li><a href="../index.html">Homepage</a></li>
+      </ul>
+    </div>
+    <div class="fl_left">
+      <h1><a href="../index.html">Personal Page</a></h1>
+      <p>You alawys aware about the position of your beloved</p>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col3">
+  <div id="breadcrumb">
+    <ul>
+      <li class="first">You Are Here</li>
+      <li>&#187;</li>
+      <li><a href="#">Home</a></li>
+      <li>&#187;</li>
+      <li class="current"><a href="#">Pesonal Page</a></li>
+    </ul>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col4">
+  <div id="container">
+    <div id="content">
+      <h1>The current Position is:
+      <?php
+	
+	$msg[0] = "Conexão com o banco falhou!";
+	$msg[1] = "Não foi possível selecionar o banco de dados!";
+	$username="root";
+	$password="admin";
+	$database="db_Cotidiano";
+	$con = mysql_connect(localhost,$username,$password);
+	@mysql_select_db($database) or die( "Unable to select database");
+	$query="SELECT * FROM `tabela_posicao`  ";
+	$result=mysql_query($query,$con);
+	$numResults = mysql_num_rows($result);
+	$data = array();
+	while($row = mysql_fetch_assoc($result)){
+		 $data[] = $row;
+        	if (++$counter == $numResults) {
+     		     
+		      } else {
+       			    }        
+	}
+	
+	echo $data[$counter-1]['Posicao'];
+		
+	?>
+	<?php
+	 if ($data[$counter-1]['Posicao'] == "Deitado")
+		echo '<img src="../images/Deitado.png" alt="" width="200" height="250" />';
+	 elseif ($data[$counter-1]['Posicao'] == "Sentado")
+	   echo '<img src="../images/Sentado.png" alt="" width="200" height="250" />';
+         elseif ($data[$counter-1]['Posicao'] == "Andando")
+            echo '<img src="../images/Andando.png" alt="" width="200" height="250 />';
+         elseif ($data[$counter-1]['Posicao'] == "EmPe")
+              echo '<img src="../images/EmPe.png" alt="" width="200" height="250" />';
+	else
+	      echo '<img src="../images/Caiu.png" alt="" width="200" height="250" />';
+	?></h1>
+      </div>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col5">
+  <div id="footer">
+    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <br class="clear" />
+  </div>
+</div>
+</body>
+</html>
+
